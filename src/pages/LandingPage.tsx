@@ -1,55 +1,27 @@
 import React from 'react'
+import { useLocaleContext } from '../i18n'
 
 export const LandingPage = () => {
-  const features = [
-    {
-      title: 'ログ解析',
-      description: 'iPhoneのシステムログを解析し、バッテリーの詳細情報をローカルで確認できます。',
-      icon: '📊'
-    },
-    {
-      title: '履歴管理 & 分析',
-      description: 'バッテリーの状態を記録し、劣化推移をグラフで可視化。将来の予測も可能です。',
-      icon: '📈'
-    },
-    {
-      title: 'iCloud 同期',
-      description: '複数のデバイス間でデータを安全に同期。機種変更時も安心です。',
-      icon: '☁️'
-    },
-    {
-      title: 'ショートカット連携',
-      description: '既存のショートカットからの移植もスムーズ。自動化をさらに便利に。',
-      icon: '⚡'
-    },
-    {
-      title: '共有シート対応',
-      description: 'ログファイルを共有シートから直接 MochiLog に送って解析できます。',
-      icon: '📤'
-    },
-    {
-      title: 'リッチな体験',
-      description: '直感的なチュートリアルと洗練されたUIで、高度な解析を誰でも簡単に。',
-      icon: '✨'
-    }
-  ]
+  const { t, locale } = useLocaleContext()
+  const features = t.landing.features
 
   return (
     <div className="lp-content">
       <section className="hero">
-        <div className="hero-badge">iOS App</div>
-        <h1 className="hero-title">MochiLog</h1>
+        <div className="hero-badge">{t.landing.badge}</div>
+        <h1 className="hero-title">{t.landing.title}</h1>
         <p className="hero-subtitle">
-          iPhoneのバッテリー寿命を、<br />
-          もっと深く、もっと正確に。
+          {t.landing.subtitle.split('\n').map((line: string, i: number) => (
+            <React.Fragment key={i}>{i > 0 && <br />}{line}</React.Fragment>
+          ))}
         </p>
         <div className="hero-cta">
-          <a href="#" className="btn-primary">App Store でチェック</a>
+          <a href="#" className="btn-primary">{t.landing.cta}</a>
         </div>
       </section>
 
       <section className="features-grid">
-        {features.map((f, i) => (
+        {features.map((f: any, i: number) => (
           <div key={i} className="feature-card">
             <div className="feature-icon">{f.icon}</div>
             <h3>{f.title}</h3>
@@ -60,17 +32,15 @@ export const LandingPage = () => {
 
       <section className="disclaimer-section">
         <div className="disclaimer-card">
-          <h4>⚠️ 免責事項</h4>
-          <p>
-            表示されるデータはシステムログに基づいた推計値であり、Appleの公式な診断結果やハードウェア保証を代替するものではありません。
-          </p>
+          <h4>{t.landing.disclaimerTitle}</h4>
+          <p>{t.landing.disclaimer}</p>
         </div>
       </section>
 
       <nav className="footer-nav">
-        <a href="/privacy">プライバシーポリシー</a>
+        <a href={`/privacy?lang=${locale}`}>{t.common.privacy}</a>
         <span className="separator">•</span>
-        <a href="/terms">利用規約</a>
+        <a href={`/terms?lang=${locale}`}>{t.common.terms}</a>
       </nav>
 
       <style>{`

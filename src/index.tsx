@@ -8,9 +8,11 @@ import { Layout } from './components/Layout'
 const app = new Hono()
 
 app.get('/', (c) => {
+  const url = new URL(c.req.url)
+  const lang = (url.searchParams.get('lang') === 'en') ? 'en' : 'ja'
   return c.html(
     renderToString(
-      <Layout title="MochiLog - バッテリー解析・管理アプリ">
+      <Layout title="MochiLog - バッテリー解析・管理アプリ" locale={lang}>
         <LandingPage />
       </Layout>
     )
@@ -18,9 +20,11 @@ app.get('/', (c) => {
 })
 
 app.get('/privacy', (c) => {
+  const url = new URL(c.req.url)
+  const lang = (url.searchParams.get('lang') === 'en') ? 'en' : 'ja'
   return c.html(
     renderToString(
-      <Layout title="プライバシーポリシー - MochiLog">
+      <Layout title="プライバシーポリシー - MochiLog" locale={lang}>
         <PrivacyPolicy />
       </Layout>
     )
@@ -28,9 +32,11 @@ app.get('/privacy', (c) => {
 })
 
 app.get('/terms', (c) => {
+  const url = new URL(c.req.url)
+  const lang = (url.searchParams.get('lang') === 'en') ? 'en' : 'ja'
   return c.html(
     renderToString(
-      <Layout title="利用規約 - MochiLog">
+      <Layout title="利用規約 - MochiLog" locale={lang}>
         <TermsOfService />
       </Layout>
     )

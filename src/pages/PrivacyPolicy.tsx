@@ -1,47 +1,36 @@
 import React from 'react'
+import { useLocaleContext } from '../i18n'
 
 export const PrivacyPolicy = () => {
+  const { t, locale } = useLocaleContext()
+
   return (
     <div className="card">
-      <h1>プライバシーポリシー</h1>
+      <h1>{t.privacy.title}</h1>
 
-      <p>
-        MochiLog（以下、「本アプリ」といいます。）は、本アプリが提供するサービスにおけるユーザーの情報の取扱いについて、以下のとおりプライバシーポリシー（以下、「本ポリシー」といいます。）を定めます。
-      </p>
+      <p>{t.privacy.content}</p>
 
-      <h2>1. 個人情報の収集について</h2>
-      <p>
-        本アプリは、ユーザーの個人情報を一切収集しません。 本アプリは完全にオフラインで動作し、すべての解析データや設定はユーザー自身のデバイス内にのみ保存されます。外部のサーバーへデータを送信することはありません。
-      </p>
+      <h2>1. {t.privacy.title.includes('Privacy') ? 'Collection of Personal Information' : '個人情報の収集について'}</h2>
+      <p>{t.privacy.sections.s1}</p>
 
-      <h2>2. データの利用目的</h2>
-      <p>
-        本アプリで読み込まれたログデータや解析結果は、本アプリ内での表示および管理の目的にのみ使用されます。
-      </p>
+      <h2>2. {t.privacy.title.includes('Privacy') ? 'Purpose of Use' : 'データの利用目的'}</h2>
+      <p>{t.privacy.sections.s2}</p>
 
-      <h2>3. データの第三者提供</h2>
-      <p>
-        本アプリは、ユーザーの個人情報やデータを保有しないため、第三者に提供することは一切ありません。
-      </p>
+      <h2>3. {t.privacy.title.includes('Privacy') ? 'Third-Party Disclosure' : 'データの第三者提供'}</h2>
+      <p>{t.privacy.sections.s3}</p>
 
-      <h2>4. 広告および解析ツールについて</h2>
-      <p>
-        本アプリでは、ユーザーの追跡、広告の配信、または利用状況の解析を目的とした外部ツール（Google AdMob、Firebase Crashlyticsなど）は一切使用しておりません。
-      </p>
+      <h2>4. {t.privacy.title.includes('Privacy') ? 'Advertising and Analytics' : '広告および解析ツールについて'}</h2>
+      <p>{t.privacy.sections.s4}</p>
 
-      <h2>5. プライバシーポリシーの変更</h2>
-      <p>
-        本ポリシーの内容は、法令の改正やアプリの仕様変更に伴い、ユーザーに通知することなく変更することができるものとします。変更後のプライバシーポリシーは、本ページに掲載したときから効力を生じるものとします。
-      </p>
+      <h2>5. {t.privacy.title.includes('Privacy') ? 'Changes to This Policy' : 'プライバシーポリシーの変更'}</h2>
+      <p>{t.privacy.sections.s5}</p>
 
-      <h2>6. お問い合わせ窓口</h2>
-      <p>
-        本ポリシーに関するお問い合わせは、App Storeのアプリページ内にあるサポート連絡先までお願いいたします。
-      </p>
+      <h2>6. {t.privacy.title.includes('Privacy') ? 'Contact' : 'お問い合わせ窓口'}</h2>
+      <p>{t.privacy.sections.s6}</p>
 
-      <p style={{ marginTop: '2rem' }}>制定日：2025年12月24日 © 2025 MochiLog</p>
+      <p style={{ marginTop: '2rem' }}>{t.privacy.date}</p>
 
-      <p style={{ marginTop: '1.5rem' }}><a href="/">トップページに戻る</a></p>
+      <p style={{ marginTop: '1.5rem' }}><a href={`/?lang=${locale}`}>{t.common.homeLink}</a></p>
     </div>
   )
 }

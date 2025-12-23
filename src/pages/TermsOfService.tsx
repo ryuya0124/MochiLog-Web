@@ -1,30 +1,31 @@
 import React from 'react'
+import { useLocaleContext } from '../i18n'
 
 export const TermsOfService = () => {
+  const { t, locale } = useLocaleContext()
+
   return (
     <div className="card">
-      <h1>利用規約</h1>
-      <p>この利用規約（以下、「本規約」といいます。）は、MochiLog（以下、「本アプリ」といいます。）が提供するサービス（以下、「本サービス」といいます。）の利用条件を定めるものです。</p>
+      <h1>{t.terms.title}</h1>
+      <p>{t.terms.intro}</p>
 
-      <h2>1. 適用</h2>
-      <p>本規約は、ユーザーと本アプリとの間の本サービスの利用に関わる一切の関係に適用されるものとします。</p>
+      {t.terms.articles.map((a: any) => (
+        <section key={a.id}>
+          <h2>{a.title}</h2>
+          {a.paragraphs.map((p: string, i: number) => (
+            <p key={i}>{p}</p>
+          ))}
+          {a.list && (
+            <ul>
+              {a.list.map((it: string, i: number) => (
+                <li key={i}>{it}</li>
+              ))}
+            </ul>
+          )}
+        </section>
+      ))}
 
-      <h2>2. 禁止事項</h2>
-      <p>ユーザーは、本サービスの利用にあたり、以下の行為をしてはなりません。</p>
-      <ul>
-        <li>法令または公序良俗に違反する行為</li>
-        <li>犯罪行為に関連する行為</li>
-        <li>本サービスの運営を妨害するおそれのある行為</li>
-        <li>その他、不適切と判断する行為</li>
-      </ul>
-
-      <h2>3. 免責事項</h2>
-      <p>本アプリの利用により生じた損害について、開発者は一切の責任を負いません。</p>
-
-      <h2>4. 規約の変更</h2>
-      <p>本アプリは、必要と判断した場合には、ユーザーに通知することなくいつでも本規約を変更することができるものとします。</p>
-
-      <p style={{ marginTop: '2rem' }}><a href="/">トップページに戻る</a></p>
+      <p style={{ marginTop: '2rem' }}><a href={`/?lang=${locale}`}>{t.common.homeLink}</a></p>
     </div>
   )
 }

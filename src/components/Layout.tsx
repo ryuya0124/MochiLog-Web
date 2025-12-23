@@ -1,8 +1,20 @@
 import React from 'react'
+import { LocaleContext, initialLocale, translations, Locale } from '../i18n'
 
-export const Layout = ({ children, title }: { children: React.ReactNode; title: string }) => {
+export const Layout = ({ children, title, locale: ssrLocale }: { children: React.ReactNode; title: string; locale?: Locale }) => {
+  const [locale, setLocale] = React.useState<Locale>(() => {
+    if (ssrLocale) return ssrLocale
+    return (typeof window === 'undefined') ? 'ja' : initialLocale()
+  })
+  const t = translations[locale]
+
+  React.useEffect(() => {
+    try { localStorage.setItem('locale', locale) } catch {}
+  }, [locale])
+
   return (
-    <html lang="ja">
+    <LocaleContext.Provider value={{ locale, setLocale, t }}>
+      <html lang={locale === 'ja' ? 'ja' : 'en'}>
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -60,12 +72,22 @@ export const Layout = ({ children, title }: { children: React.ReactNode; title: 
       </head>
       <body>
         <div className="container">
+          <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+            <div style={{ fontWeight: 700, color: 'var(--accent)' }}>{t.common.appName}</div>
+            <div>
+              <a href={`?lang=ja`} style={{ marginRight: 8, opacity: locale === 'ja' ? 1 : 0.6 }}>日本語</a>
+              <a href={`?lang=en`} style={{ opacity: locale === 'en' ? 1 : 0.6, marginLeft: 8 }}>English</a>
+            </div>
+          </header>
+
           {children}
+
           <footer>
             <p>&copy; {new Date().getFullYear()} MochiLog</p>
           </footer>
         </div>
       </body>
-    </html>
+      </html>
+    </LocaleContext.Provider>
   )
 }
