@@ -2,7 +2,7 @@ import React from 'react'
 
 export const TermsOfService = () => {
   return (
-    <div>
+    <div className="card">
       <h1>利用規約</h1>
       <p>この利用規約（以下、「本規約」といいます。）は、MochiLog（以下、「本アプリ」といいます。）が提供するサービス（以下、「本サービス」といいます。）の利用条件を定めるものです。</p>
 

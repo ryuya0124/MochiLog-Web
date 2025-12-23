@@ -2,7 +2,7 @@ import React from 'react'
 
 export const PrivacyPolicy = () => {
   return (
-    <div>
+    <div className="card">
       <h1>プライバシーポリシー</h1>
       <p>MochiLog（以下、「本アプリ」といいます。）は、本アプリが提供するサービス（以下、「本サービス」といいます。）における、ユーザーの個人情報の取扱いについて、以下のとおりプライバシーポリシー（以下、「本ポリシー」といいます。）を定めます。</p>
 

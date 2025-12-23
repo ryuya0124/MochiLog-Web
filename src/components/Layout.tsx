@@ -39,12 +39,16 @@ export const Layout = ({ children, title }: { children: React.ReactNode; title: 
           }
 
           .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 2rem;
+          }
+
+          .card {
             background: var(--container-bg);
-            border-radius: 8px;
-            box-shadow: 0 2px 6px var(--shadow);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px var(--shadow);
           }
 
           h1 { color: var(--accent); }
