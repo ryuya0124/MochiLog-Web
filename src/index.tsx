@@ -6,22 +6,7 @@ import { Layout } from './components/Layout'
 
 const app = new Hono()
 
-app.get('/', (c) => {
-  return c.html(
-    renderToString(
-      <Layout title="MochiLog - Home">
-        <div className="container">
-          <h1>MochiLog</h1>
-          <p>iOSアプリ「MochiLog」のサポートサイトです。</p>
-          <ul>
-            <li><a href="/privacy">プライバシーポリシー</a></li>
-            <li><a href="/terms">利用規約</a></li>
-          </ul>
-        </div>
-      </Layout>
-    )
-  )
-})
+app.get('/', (c) => c.redirect('/privacy'))
 
 app.get('/privacy', (c) => {
   return c.html(
