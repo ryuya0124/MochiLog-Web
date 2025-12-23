@@ -1,0 +1,23 @@
+{
+  "name": "mochilog-web",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "dep": "wrangler deploy --minify src/index.tsx"
+  },
+  "dependencies": {
+    "hono": "^4.11.1",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20251223.0",
+    "@hono/vite-dev-server": "^0.23.0",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "vite": "^7.3.0",
+    "wrangler": "^4.56.0"
+  }
+}
