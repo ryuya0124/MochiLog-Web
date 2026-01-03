@@ -1,7 +1,23 @@
 import React from 'react'
 import { LocaleContext, initialLocale, translations, Locale } from '../i18n'
 
-export const Layout = ({ children, title, locale: ssrLocale }: { children: React.ReactNode; title: string; locale?: Locale }) => {
+/** サイトのベースURL */
+const SITE_URL = 'https://mochilog.ryuya-dev.net'
+
+/** OGP画像のURL */
+const OGP_IMAGE_URL = `${SITE_URL}/ogp.png`
+
+interface LayoutProps {
+  children: React.ReactNode
+  title: string
+  locale?: Locale
+  /** ページの説明文（SEO・OGP用） */
+  description?: string
+  /** ページのパス（例: /privacy） */
+  path?: string
+}
+
+export const Layout = ({ children, title, locale: ssrLocale, description, path = '' }: LayoutProps) => {
   const [locale, setLocale] = React.useState<Locale>(() => {
     if (ssrLocale) return ssrLocale
     return (typeof window === 'undefined') ? 'ja' : initialLocale()
@@ -12,6 +28,15 @@ export const Layout = ({ children, title, locale: ssrLocale }: { children: React
     try { localStorage.setItem('locale', locale) } catch {}
   }, [locale])
 
+  // デフォルトの説明文
+  const defaultDescription = locale === 'ja'
+    ? 'MochiLogはiPhone・iPadのバッテリー状態を詳細に解析・管理できるアプリです。充放電サイクル、容量劣化、健康状態の推移をグラフで可視化。'
+    : 'MochiLog is a battery analytics app for iPhone and iPad. Track charge cycles, capacity degradation, and health trends with detailed graphs.'
+
+  const metaDescription = description || defaultDescription
+  const canonicalUrl = `${SITE_URL}${path}`
+  const ogLocale = locale === 'ja' ? 'ja_JP' : 'en_US'
+
   return (
     <LocaleContext.Provider value={{ locale, setLocale, t }}>
       <html lang={locale === 'ja' ? 'ja' : 'en'}>
@@ -19,6 +44,31 @@ export const Layout = ({ children, title, locale: ssrLocale }: { children: React
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{title}</title>
+
+        {/* === 基本SEOメタタグ === */}
+        <meta name="description" content={metaDescription} />
+        <meta name="keywords" content="MochiLog, バッテリー, battery, iPhone, iPad, 解析, analytics, 健康状態, health, iOS, アプリ, app" />
+        <meta name="author" content="Ryuya" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={canonicalUrl} />
+
+        {/* === OGP（Open Graph Protocol）メタタグ === */}
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={metaDescription} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={OGP_IMAGE_URL} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="MochiLog" />
+        <meta property="og:locale" content={ogLocale} />
+
+        {/* === Twitter Cards メタタグ === */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={metaDescription} />
+        <meta name="twitter:image" content={OGP_IMAGE_URL} />
+
         {/* Google Fonts: Space Grotesk + DM Sans */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

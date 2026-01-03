@@ -4,5 +4,10 @@ name = "mochilog-web"
 compatibility_date = "2025-12-23"
 main = "src/index.tsx"
 
+# 静的ファイル配信（OGP画像など）
+[assets]
+directory = "public"
+
 [observability]
 enabled = true
+
