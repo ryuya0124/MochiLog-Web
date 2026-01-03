@@ -8,7 +8,10 @@ export const translations: Record<Locale, any> = {
       homeLink: 'トップページに戻る',
       appName: 'MochiLog',
       privacy: 'プライバシーポリシー',
-      terms: '利用規約'
+      terms: '利用規約',
+      support: 'サポート',
+      contactUs: 'お問い合わせ',
+      contactEmail: 'support@mochilog.ryuya-dev.net'
     },
     landing: {
       badge: 'iOS App',
@@ -35,7 +38,7 @@ export const translations: Record<Locale, any> = {
         s3: '本アプリは、ユーザーの個人情報やデータを保有しないため、第三者に提供することは一切ありません。',
         s4: '本アプリでは、ユーザーの追跡、広告の配信、または利用状況の解析を目的とした外部ツール（Google AdMob、Firebase Crashlyticsなど）は一切使用しておりません。',
         s5: '本ポリシーの内容は、法令の改正やアプリの仕様変更に伴い、ユーザーに通知することなく変更することができるものとします。変更後のプライバシーポリシーは、本ページに掲載したときから効力を生じるものとします。',
-        s6: '本ポリシーに関するお問い合わせは、App Storeのアプリページ内にあるサポート連絡先までお願いいたします。'
+        s6: '本ポリシーに関するお問い合わせは、support@mochilog.ryuya-dev.net までメールにてお願いいたします。'
       },
       date: '制定日：2025年12月24日 © 2025 MochiLog'
     },
@@ -92,7 +95,10 @@ export const translations: Record<Locale, any> = {
       homeLink: 'Back to Home',
       appName: 'MochiLog',
       privacy: 'Privacy Policy',
-      terms: 'Terms of Service'
+      terms: 'Terms of Service',
+      support: 'Support',
+      contactUs: 'Contact Us',
+      contactEmail: 'support@mochilog.ryuya-dev.net'
     },
     landing: {
       badge: 'iOS App',
@@ -119,7 +125,7 @@ export const translations: Record<Locale, any> = {
         s3: 'As the App does not collect or possess user personal information or data, it does not provide any data to third parties.',
         s4: 'The App does not use any external tools (such as Google AdMob or Firebase Crashlytics) for the purpose of user tracking, advertisement delivery, or usage analysis.',
         s5: 'The contents of this Policy may be changed without notice to users due to amendments in laws or changes in the App\'s specifications. The revised Privacy Policy shall become effective from the time it is posted on this page.',
-        s6: 'For inquiries regarding this Policy, please contact the support information provided on the App Store page.'
+        s6: 'For inquiries regarding this Policy, please contact us at support@mochilog.ryuya-dev.net.'
       },
       date: 'Established: December 24, 2025 © 2025 MochiLog'
     },
