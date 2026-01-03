@@ -3,6 +3,7 @@ import { renderToString } from 'react-dom/server'
 import { LandingPage } from './pages/LandingPage'
 import { PrivacyPolicy } from './pages/PrivacyPolicy'
 import { TermsOfService } from './pages/TermsOfService'
+import { SupportPage } from './pages/SupportPage'
 import { Layout } from './components/Layout'
 
 const app = new Hono()
@@ -43,4 +44,17 @@ app.get('/terms', (c) => {
   )
 })
 
+app.get('/support', (c) => {
+  const url = new URL(c.req.url)
+  const lang = (url.searchParams.get('lang') === 'en') ? 'en' : 'ja'
+  return c.html(
+    renderToString(
+      <Layout title="サポート - MochiLog" locale={lang}>
+        <SupportPage />
+      </Layout>
+    )
+  )
+})
+
 export default app
+

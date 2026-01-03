@@ -96,7 +96,7 @@ export const LandingPage = () => {
         <span className="separator">•</span>
         <a href={`/terms?lang=${locale}`}>{t.common.terms}</a>
         <span className="separator">•</span>
-        <a href={`mailto:${t.common.contactEmail}`}>{t.common.support}</a>
+        <a href={`/support?lang=${locale}`}>{t.common.support}</a>
       </nav>
 
       <style>{`
