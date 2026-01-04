@@ -68,6 +68,55 @@ app.get('/support', (c) => {
   )
 })
 
+// robots.txt
+app.get('/robots.txt', (c) => {
+  return c.text(`User-agent: *
+Allow: /
+
+Sitemap: https://mochilog.ryuya-dev.net/sitemap.xml`, 200, { 'Content-Type': 'text/plain' })
+})
+
+// sitemap.xml
+app.get('/sitemap.xml', (c) => {
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://mochilog.ryuya-dev.net/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://mochilog.ryuya-dev.net/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mochilog.ryuya-dev.net/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mochilog.ryuya-dev.net/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://mochilog.ryuya-dev.net/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://mochilog.ryuya-dev.net/privacy?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mochilog.ryuya-dev.net/privacy?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mochilog.ryuya-dev.net/privacy"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://mochilog.ryuya-dev.net/terms</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://mochilog.ryuya-dev.net/terms?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mochilog.ryuya-dev.net/terms?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mochilog.ryuya-dev.net/terms"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://mochilog.ryuya-dev.net/support</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://mochilog.ryuya-dev.net/support?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mochilog.ryuya-dev.net/support?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mochilog.ryuya-dev.net/support"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+</urlset>`
+  return c.body(xml, 200, { 'Content-Type': 'application/xml' })
+})
+
 export default app
 
 

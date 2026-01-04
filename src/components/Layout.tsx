@@ -69,6 +69,21 @@ export const Layout = ({ children, title, locale: ssrLocale, description, path =
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content={OGP_IMAGE_URL} />
 
+        {/* === hreflang (多言語対応) === */}
+        <link rel="alternate" hrefLang="ja" href={`${SITE_URL}${path}?lang=ja`} />
+        <link rel="alternate" hrefLang="en" href={`${SITE_URL}${path}?lang=en`} />
+        <link rel="alternate" hrefLang="x-default" href={`${SITE_URL}${path}`} />
+
+        {/* === JSON-LD 構造化データ: WebSite === */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "MochiLog",
+          "url": SITE_URL,
+          "inLanguage": ["ja", "en"],
+          "description": metaDescription
+        }) }} />
+
         {/* Google Fonts: Space Grotesk + DM Sans */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

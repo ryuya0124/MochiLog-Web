@@ -17,8 +17,8 @@ export const SupportPage = () => {
     : 'MochiLogに関するご質問、バグ報告、フィードバックなどがございましたら、お気軽にメールにてお問い合わせください。'
   const buttonText = locale === 'en' ? 'Send Email' : 'メールを送信'
   const noteText = locale === 'en'
-    ? 'We typically respond within 1-2 business days.'
-    : '通常1〜2営業日以内にご返信いたします。'
+    ? 'We typically respond within 1-2 days.'
+    : '通常1〜2日以内にご返信いたします。'
 
   return (
     <div className="support-page animate-fade-in">
@@ -67,6 +67,12 @@ export const SupportPage = () => {
           color: #050510;
         }
 
+        @media (prefers-color-scheme: light) {
+          .support-icon {
+            color: #ffffff;
+          }
+        }
+
         .support-card h1 {
           font-size: 2rem;
           margin-bottom: 1rem;
@@ -97,6 +103,12 @@ export const SupportPage = () => {
         .btn-primary:hover {
           transform: translateY(-2px);
           box-shadow: 0 8px 30px rgba(0,255,255,0.4);
+        }
+
+        @media (prefers-color-scheme: light) {
+          .btn-primary {
+            color: #ffffff !important;
+          }
         }
 
         .support-email {

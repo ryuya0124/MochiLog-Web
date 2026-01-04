@@ -48,6 +48,23 @@ export const LandingPage = () => {
 
   return (
     <div className="lp-content">
+      {/* === JSON-LD 構造化データ: SoftwareApplication === */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "MochiLog",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "iOS, iPadOS",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "JPY"
+        },
+        "description": locale === 'ja' 
+          ? "iPhone・iPadのバッテリー状態を詳細に解析・管理できるアプリ"
+          : "Battery analytics app for iPhone and iPad"
+      }) }} />
+
       {/* Hero Section */}
       <section className="hero">
         <div className="hero-glow" aria-hidden="true" />
@@ -186,6 +203,12 @@ export const LandingPage = () => {
           box-shadow: 0 8px 30px rgba(0,255,255,0.4);
         }
 
+        @media (prefers-color-scheme: light) {
+          .btn-primary {
+            color: #ffffff !important;
+          }
+        }
+
         /* === Features Grid === */
         .features-grid {
           display: grid;
@@ -219,7 +242,13 @@ export const LandingPage = () => {
           background: var(--gradient);
           border-radius: 14px;
           margin-bottom: 1.25rem;
-          color: #050510;
+          color: var(--icon-on-gradient, #050510);
+        }
+
+        @media (prefers-color-scheme: light) {
+          .feature-icon {
+            color: #ffffff;
+          }
         }
 
         .feature-card h3 {

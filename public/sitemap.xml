@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- ホームページ -->
+  <url>
+    <loc>https://mochilog.ryuya-dev.net/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://mochilog.ryuya-dev.net/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mochilog.ryuya-dev.net/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mochilog.ryuya-dev.net/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- プライバシーポリシー -->
+  <url>
+    <loc>https://mochilog.ryuya-dev.net/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://mochilog.ryuya-dev.net/privacy?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mochilog.ryuya-dev.net/privacy?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mochilog.ryuya-dev.net/privacy"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- 利用規約 -->
+  <url>
+    <loc>https://mochilog.ryuya-dev.net/terms</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://mochilog.ryuya-dev.net/terms?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mochilog.ryuya-dev.net/terms?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mochilog.ryuya-dev.net/terms"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- サポート -->
+  <url>
+    <loc>https://mochilog.ryuya-dev.net/support</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://mochilog.ryuya-dev.net/support?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mochilog.ryuya-dev.net/support?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mochilog.ryuya-dev.net/support"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+</urlset>
