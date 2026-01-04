@@ -14,10 +14,12 @@ export const translations: Record<Locale, any> = {
       contactEmail: 'support@ryuya-dev.net'
     },
     landing: {
-      badge: 'iOS App',
+      badge: 'iOS / iPadOS App',
       title: 'MochiLog',
-      subtitle: 'iPhoneのバッテリー寿命を、\nもっと深く、もっと正確に。',
-      cta: 'App Store でチェック',
+      subtitle: 'iPhone・iPadのバッテリー寿命を、\nもっと深く、もっと正確に。',
+      ctaAppStore: 'App Store でチェック',
+      ctaTestFlight: 'TestFlight で試す',
+      comingSoon: 'Coming Soon',
       features: [
         { title: 'ログ解析', description: 'iPhoneのシステムログを解析し、バッテリーの詳細情報をローカルで確認できます。', icon: '📊' },
         { title: '履歴管理 & 分析', description: 'バッテリーの状態を記録し、劣化推移をグラフで可視化。将来の予測も可能です。', icon: '📈' },
@@ -101,10 +103,12 @@ export const translations: Record<Locale, any> = {
       contactEmail: 'support@ryuya-dev.net'
     },
     landing: {
-      badge: 'iOS App',
+      badge: 'iOS / iPadOS App',
       title: 'MochiLog',
-      subtitle: 'Understand your iPhone battery life\nmore deeply and accurately.',
-      cta: 'View on App Store',
+      subtitle: 'Understand your iPhone and iPad battery life\nmore deeply and accurately.',
+      ctaAppStore: 'View on App Store',
+      ctaTestFlight: 'Try on TestFlight',
+      comingSoon: 'Coming Soon',
       features: [
         { title: 'Log Analysis', description: 'Parse iPhone system logs and view detailed battery information locally.', icon: '📊' },
         { title: 'History & Analysis', description: 'Record battery health over time and visualize degradation with graphs.', icon: '📈' },

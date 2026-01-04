@@ -76,7 +76,13 @@ export const LandingPage = () => {
           ))}
         </p>
         <div className="hero-cta">
-          <a href="#" className="btn-primary">{t.landing.cta}</a>
+          <a href="https://testflight.apple.com/join/vnHYsRgN" className="btn-primary" target="_blank" rel="noopener noreferrer">
+            {t.landing.ctaTestFlight}
+          </a>
+          <a href="https://apps.apple.com/us/app/mochilog/id6756904240" className="btn-secondary" target="_blank" rel="noopener noreferrer">
+            {t.landing.ctaAppStore}
+            <span className="coming-soon-badge">{t.landing.comingSoon}</span>
+          </a>
         </div>
       </section>
 
@@ -181,6 +187,10 @@ export const LandingPage = () => {
 
         .hero-cta {
           margin-top: 2.5rem;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1rem;
+          justify-content: center;
         }
 
         .btn-primary {
@@ -207,6 +217,42 @@ export const LandingPage = () => {
           .btn-primary {
             color: #ffffff !important;
           }
+        }
+
+        .btn-secondary {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          background: var(--glass-bg);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border: 1px solid var(--glass-border);
+          color: var(--text);
+          padding: 1rem 2rem;
+          border-radius: 14px;
+          font-family: 'Space Grotesk', sans-serif;
+          font-weight: 600;
+          font-size: 1rem;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+          border-color: var(--accent);
+          box-shadow: 0 4px 20px rgba(0,255,255,0.15);
+          transform: translateY(-2px);
+        }
+
+        .coming-soon-badge {
+          background: var(--accent-secondary);
+          color: #ffffff;
+          font-size: 0.65rem;
+          font-weight: 700;
+          padding: 0.2rem 0.5rem;
+          border-radius: 6px;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
         }
 
         /* === Features Grid === */
