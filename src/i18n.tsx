@@ -24,7 +24,7 @@ export const translations: Record<Locale, any> = {
         { title: 'ログ解析', description: 'iPhoneのシステムログを解析し、バッテリーの詳細情報をローカルで確認できます。', icon: '📊' },
         { title: '履歴管理 & 分析', description: 'バッテリーの状態を記録し、劣化推移をグラフで可視化。将来の予測も可能です。', icon: '📈' },
         { title: 'iCloud 同期', description: '複数のデバイス間でデータを安全に同期。機種変更時も安心です。', icon: '☁️' },
-        { title: 'ショートカット連携', description: '既存のショートカットからの移植もスムーズ。自動化をさらに便利に。', icon: '⚡' },
+
         { title: '共有シート対応', description: 'ログファイルを共有シートから直接 MochiLog に送って解析できます。', icon: '📤' },
         { title: 'リッチな体験', description: '直感的なチュートリアルと洗練されたUIで、高度な解析を誰でも簡単に。', icon: '✨' }
       ],
@@ -113,7 +113,7 @@ export const translations: Record<Locale, any> = {
         { title: 'Log Analysis', description: 'Parse iPhone system logs and view detailed battery information locally.', icon: '📊' },
         { title: 'History & Analysis', description: 'Record battery health over time and visualize degradation with graphs.', icon: '📈' },
         { title: 'iCloud Sync', description: 'Securely sync data across devices for a smooth transition.', icon: '☁️' },
-        { title: 'Shortcuts Integration', description: 'Easily migrate from existing Shortcuts to automate workflows.', icon: '⚡' },
+
         { title: 'Share Sheet Support', description: 'Send log files directly to MochiLog from the share sheet for analysis.', icon: '📤' },
         { title: 'Polished Experience', description: 'Intuitive tutorials and a refined UI make advanced analysis accessible.', icon: '✨' }
       ],
