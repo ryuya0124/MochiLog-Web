@@ -77,7 +77,6 @@ export const LandingPage = () => {
           </a>
           <a href="https://apps.apple.com/us/app/mochilog/id6756904240" className="btn-secondary" target="_blank" rel="noopener noreferrer">
             {t.landing.ctaAppStore}
-            <span className="coming-soon-badge">{t.landing.comingSoon}</span>
           </a>
         </div>
       </section>
@@ -238,17 +237,6 @@ export const LandingPage = () => {
           border-color: var(--accent);
           box-shadow: 0 4px 20px rgba(0,255,255,0.15);
           transform: translateY(-2px);
-        }
-
-        .coming-soon-badge {
-          background: var(--accent-secondary);
-          color: #ffffff;
-          font-size: 0.65rem;
-          font-weight: 700;
-          padding: 0.2rem 0.5rem;
-          border-radius: 6px;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
         }
 
         /* === Features Grid === */
