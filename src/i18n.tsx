@@ -23,13 +23,42 @@ export const translations: Record<Locale, any> = {
       features: [
         { title: 'ログ解析', description: 'iPhoneのシステムログを解析し、バッテリーの詳細情報をローカルで確認できます。', icon: '📊' },
         { title: '履歴管理 & 分析', description: 'バッテリーの状態を記録し、劣化推移をグラフで可視化。将来の予測も可能です。', icon: '📈' },
-        { title: 'iCloud 同期', description: '複数のデバイス間でデータを安全に同期。機種変更時も安心です。', icon: '☁️' },
+        { title: 'iCloud 同期', description: '複数のデバイス間でデータを自動同期。iPhoneとiPadのログを1箇所でまとめて管理できます。', icon: '☁️' },
 
         { title: '共有シート対応', description: 'ログファイルを共有シートから直接 MochiLog に送って解析できます。', icon: '📤' },
         { title: 'リッチな体験', description: '直感的なチュートリアルと洗練されたUIで、高度な解析を誰でも簡単に。', icon: '✨' }
       ],
       disclaimerTitle: '⚠️ 免責事項',
-      disclaimer: '表示されるデータはシステムログに基づいた推計値であり、Appleの公式な診断結果やハードウェア保証を代替するものではありません。'
+      disclaimer: '表示されるデータはシステムログに基づいた推計値であり、Appleの公式な診断結果やハードウェア保証を代替するものではありません。',
+      seoContent: {
+        about: {
+          title: 'iPhone・iPadのバッテリー解析データとは？',
+          description: 'iOSの設定アプリで見られる「バッテリーの状態」は、簡易的な目安に過ぎません。MochiLogは、端末内部に記録されている「Analytics Data（解析データ）」を読み解くことで、より詳細で正確なバッテリーの健康状態を明らかにします。',
+          metrics: [
+            { term: '充放電回数', desc: 'バッテリーが0%から100%まで充電された累積回数。Apple公式の寿命目安（iPhoneなら500回、iPadなら1000回）と比較できます。' },
+            { term: '実測容量 (mAh)', desc: '設計上の理論値ではなく、現在のバッテリーが実際に蓄えられる電力量。劣化の進行具合をリアルな数値で把握できます。' },
+            { term: 'グラフで可視化', desc: '容量やサイクルの推移を美しいグラフで表示。劣化のスピードや傾向を一目で把握できます。' },
+            { term: '詳細な診断データ', desc: '平均温度、電圧の推移、デフレータ（補正値）など、通常は見られない専門的なパラメータも確認可能です。' }
+          ]
+        },
+        howto: {
+          title: 'バッテリー解析の実測 mAh の調べ方',
+          steps: [
+            '「設定」アプリを開き、「プライバシーとセキュリティ」＞「解析と改善」に進みます。',
+            '「解析データ」をタップし、一覧から `Analytics-xxxx-xx-xx` で始まる最新の日付のファイルを探します。',
+            '右上の共有ボタンをタップし、MochiLogアイコンを選択またはファイルとして保存します。',
+            'MochiLogが自動的にログを解析します。（※アプリ内には、より分かりやすい図解付きのチュートリアルも搭載されています）'
+          ]
+        },
+        faq: {
+          title: 'よくある質問',
+          items: [
+            { q: '設定アプリの数値（最大容量）と違います。', a: 'Appleの公式修理や保証においては、設定アプリの「最大容量」が唯一の「正解（基準）」となります。MochiLogの解析結果は、より詳細な実態を知るための参考情報としてご活用ください。' },
+            { q: '複数の端末のデータをまとめられますか？', a: 'はい、MochiLogはiCloud同期に対応しています。iPhoneとiPadなど、異なるデバイスで取得した解析ログを1つのアカウント（Apple ID）でまとめて管理・閲覧できます。' },
+            { q: 'iPadに対応していますか？', a: 'はい、iPadOSのバッテリーログ解析にも完全対応しています。M4 iPad Proなどを含む全モデルでご利用いただけます。' }
+          ]
+        }
+      }
     },
     privacy: {
       title: 'プライバシーポリシー',
@@ -43,6 +72,27 @@ export const translations: Record<Locale, any> = {
         s6: '本ポリシーに関するお問い合わせは、support@ryuya-dev.net までメールにてお願いいたします。'
       },
       date: '制定日：2025年12月24日 © 2025 MochiLog'
+    },
+    guide: {
+      title: 'バッテリー解析 完全ガイド',
+      subtitle: 'iPhone・iPadのバッテリーの仕組みと、\n解析データの正しい見方を解説します。',
+      sections: [
+        {
+          id: 'about',
+          title: 'iPhoneの「解析データ」とは？',
+          content: 'iPhoneやiPadは、デバイスの動作状況を日々記録しています。この記録の中に「Analytics Data（解析データ）」と呼ばれるログファイルが含まれており、ここには設定アプリでは表示されない「生のバッテリー数値」が詳細に記録されています。\nMochiLogはこのログを読み取り、可視化するツールです。'
+        },
+        {
+          id: 'capacity',
+          title: '「実測容量 (mAh)」と「最大容量 (%)」の違い',
+          content: '設定アプリの「最大容量」は、新品時を100%とした時の比率を示す「目安」に過ぎません。一方、解析データに含まれる「実測容量 (Nominal Charge Capacity)」は、バッテリーが実際に蓄えられる電力量（mAh）を示しています。\n例えば、設定アプリでは「90%」と表示されていても、実測容量の詳細な数値を見ると「88.5%」相当まで劣化している場合や、逆に「92%」相当の性能を維持している場合など、個体差が詳細に分かります。'
+        },
+        {
+          id: 'cycle',
+          title: '「充放電回数 (サイクル数)」とは？',
+          content: 'バッテリーを0%から100%まで放電・充電した回数の累計です。継ぎ足し充電を行っても、合計が100%になった時点で1回とカウントされます。\nAppleの公式見解では、iPhoneのバッテリーは「フル充電サイクルを500回（iPhone 15以降は1000回）繰り返した時に、本来の容量の80%を維持するように設計」されています。この回数を知ることは、交換時期を見極めるための最も重要な指標となります。'
+        }
+      ]
     },
     terms: {
       title: '利用規約',
@@ -112,13 +162,43 @@ export const translations: Record<Locale, any> = {
       features: [
         { title: 'Log Analysis', description: 'Parse iPhone system logs and view detailed battery information locally.', icon: '📊' },
         { title: 'History & Analysis', description: 'Record battery health over time and visualize degradation with graphs.', icon: '📈' },
-        { title: 'iCloud Sync', description: 'Securely sync data across devices for a smooth transition.', icon: '☁️' },
+        { title: 'iCloud Sync', description: 'Automatically sync data across devices. Manage logs from both iPhone and iPad in one place.', icon: '☁️' },
 
         { title: 'Share Sheet Support', description: 'Send log files directly to MochiLog from the share sheet for analysis.', icon: '📤' },
         { title: 'Polished Experience', description: 'Intuitive tutorials and a refined UI make advanced analysis accessible.', icon: '✨' }
       ],
       disclaimerTitle: '⚠️ Disclaimer',
-      disclaimer: 'Displayed data are estimates based on system logs and do not replace official Apple diagnostics or hardware warranties.'
+      disclaimer: 'Displayed data are estimates based on system logs and do not replace official Apple diagnostics or hardware warranties.',
+      seoContent: {
+        about: {
+          title: 'What is Analytics Data?',
+          description: 'The "Battery Health" in iOS Settings is just a rough estimate. MochiLog analyzes the internal "Analytics Data" to reveal the true health of your battery.',
+          metrics: [
+            { term: 'Cycle Count', desc: 'The total number of times your battery has been charged from 0% to 100%.' },
+            { term: 'Real Capacity (mAh)', desc: 'The actual amount of power your battery can hold right now, not just the theoretical design capacity.' },
+            { term: 'Graph Visualization', desc: 'Visualize capacity and cycle trends with beautiful graphs. Understand degradation speed at a glance.' },
+            { term: 'Detailed Diagnostics', desc: 'Check professional parameters like average temperature, voltage trends, and deflator values.' }
+          ]
+        },
+        howto: {
+          title: 'How to check Real Battery Capacity',
+          steps: [
+            'Open "Settings" > "Privacy & Security" > "Analytics & Improvements".',
+            'Tap "Analytics Data" and find the latest file starting with `Analytics-xxxx-xx-xx`.',
+            'Tap the share button and select MochiLog.',
+            'MochiLog automatically parses the log. (The app also includes an illustrated tutorial)'
+          ]
+        },
+        faq: {
+          title: 'FAQ',
+          items: [
+            { q: 'Different from Settings App (Max Capacity)?', a: 'For official Apple repairs and warranties, the "Maximum Capacity" in Settings is the only standard. MochiLog\'s analysis is for detailed personal reference only.' },
+            { q: 'Can I combine data from multiple devices?', a: 'Yes, MochiLog supports iCloud Sync. You can manage and view analysis logs from different devices (like iPhone and iPad) under one Apple ID.' },
+            { q: 'Does it support iPad?', a: 'Yes, full support for iPadOS battery log analysis, including the latest iPad Pro (M4).' },
+            { q: 'Is my privacy safe?', a: 'MochiLog processes everything offline on your device. No data is ever sent to external servers.' }
+          ]
+        }
+      }
     },
     privacy: {
       title: 'Privacy Policy',
@@ -132,6 +212,27 @@ export const translations: Record<Locale, any> = {
         s6: 'For inquiries regarding this Policy, please contact us at support@ryuya-dev.net.'
       },
       date: 'Established: December 24, 2025 © 2025 MochiLog'
+    },
+    guide: {
+      title: 'Battery Analytics Guide',
+      subtitle: 'Understand how iPhone batteries work\nand how to read the analytics data correctly.',
+      sections: [
+        {
+          id: 'about',
+          title: 'What is "Analytics Data"?',
+          content: 'iPhones and iPads record daily device performance in system logs. Among these is "Analytics Data," which contains detailed "raw battery metrics" not shown in the Settings app.\nMochiLog is a tool that reads and visualizes this data.'
+        },
+        {
+          id: 'capacity',
+          title: 'Real Capacity (mAh) vs Maximum Capacity (%)',
+          content: '"Maximum Capacity" in Settings is just a rough estimate relative to when the device was new (100%). "Real Capacity (Nominal Charge Capacity)" in the analytics data shows the actual amount of power (mAh) your battery can currently hold.\nEven if Settings says "90%", the real capacity might be "88.5%" or "92%". Detailed logs reveal these individual differences.'
+        },
+        {
+          id: 'cycle',
+          title: 'What is "Cycle Count"?',
+          content: 'This is the total number of times the battery has been discharged and recharged from 0% to 100%. Even with top-up charging, one cycle is counted when the total discharge reaches 100%.\nApple states that iPhone batteries are designed to retain 80% of their original capacity after 500 complete charge cycles (1000 for iPhone 15 and later). Knowing this count is crucial for determining when to replace your battery.'
+        }
+      ]
     },
     terms: {
       title: 'Terms of Service',

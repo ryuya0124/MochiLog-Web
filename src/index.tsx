@@ -4,6 +4,7 @@ import { LandingPage } from './pages/LandingPage'
 import { PrivacyPolicy } from './pages/PrivacyPolicy'
 import { TermsOfService } from './pages/TermsOfService'
 import { SupportPage } from './pages/SupportPage'
+import { GuidePage } from './pages/GuidePage'
 import { Layout } from './components/Layout'
 
 const app = new Hono()
@@ -22,6 +23,23 @@ app.get('/', (c) => {
     )
   )
 })
+
+app.get('/guide', (c) => {
+  const url = new URL(c.req.url)
+  const lang = (url.searchParams.get('lang') === 'en') ? 'en' : 'ja'
+  const title = lang === 'ja' ? 'バッテリー解析完全ガイド - MochiLog' : 'Battery Analytics Guide - MochiLog'
+  const description = lang === 'ja'
+    ? 'iPhoneのバッテリー解析データ、サイクル数、実測容量(mAh)の正しい見方を解説します。設定アプリとの違いや、バッテリー寿命を延ばすための知識を網羅。'
+    : 'Complete guide to iPhone battery analytics. Learn how to read cycle counts and real capacity (mAh), and understand the difference from Settings app.'
+  return c.html(
+    renderToString(
+      <Layout title={title} locale={lang} description={description} path="/guide">
+        <GuidePage />
+      </Layout>
+    )
+  )
+})
+
 
 app.get('/privacy', (c) => {
   const url = new URL(c.req.url)
@@ -96,6 +114,14 @@ app.get('/sitemap.xml', (c) => {
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mochilog.ryuya-dev.net/privacy"/>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://mochilog.ryuya-dev.net/guide</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://mochilog.ryuya-dev.net/guide?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mochilog.ryuya-dev.net/guide?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mochilog.ryuya-dev.net/guide"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://mochilog.ryuya-dev.net/terms</loc>

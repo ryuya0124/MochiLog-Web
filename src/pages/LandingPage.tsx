@@ -97,6 +97,59 @@ export const LandingPage = () => {
         })}
       </section>
 
+      {/* SEO Content Sections */}
+      {t.landing.seoContent && (
+        <div className="seo-sections">
+          
+          {/* About Section */}
+          <section className="seo-section">
+            <h2>{t.landing.seoContent.about.title}</h2>
+            <p className="seo-description">{t.landing.seoContent.about.description}</p>
+            <div className="metrics-grid">
+              {t.landing.seoContent.about.metrics.map((m: any, i: number) => (
+                <div key={i} className="metric-card">
+                  <h4>{m.term}</h4>
+                  <p>{m.desc}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* HowTo Section */}
+          <section className="seo-section howto-section">
+            <h2>{t.landing.seoContent.howto.title}</h2>
+            <ol className="howto-steps">
+              {t.landing.seoContent.howto.steps.map((step: string, i: number) => (
+                <li key={i}>
+                  <span className="step-number">{i + 1}</span>
+                  <span className="step-text">{step}</span>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          {/* FAQ Section */}
+          <section className="seo-section faq-section">
+            <h2>{t.landing.seoContent.faq.title}</h2>
+            <div className="faq-grid">
+              {t.landing.seoContent.faq.items.map((item: any, i: number) => (
+                <div key={i} className="faq-item">
+                  <div className="faq-q">
+                    <span className="q-mark">Q</span>
+                    <h3>{item.q}</h3>
+                  </div>
+                  <div className="faq-a">
+                    <span className="a-mark">A</span>
+                    <p>{item.a}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+        </div>
+      )}
+
       {/* Disclaimer Section */}
       <section className="disclaimer-section">
         <div className="disclaimer-card">
@@ -354,6 +407,157 @@ export const LandingPage = () => {
           .hero-subtitle { font-size: 1.1rem; }
           .hero-glow { width: 300px; height: 300px; }
           .feature-card { padding: 1.5rem; }
+        }
+
+        /* === SEO Content Sections === */
+        .seo-sections {
+          display: flex;
+          flex-direction: column;
+          gap: 6rem;
+        }
+
+        .seo-section {
+          text-align: center;
+        }
+
+        .seo-section h2 {
+          font-size: 2rem;
+          margin-bottom: 1.5rem;
+          background: var(--gradient);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        .seo-description {
+          max-width: 700px;
+          margin: 0 auto 3rem;
+          font-size: 1.1rem;
+          color: var(--muted);
+        }
+
+        /* Metrics Grid */
+        .metrics-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+          gap: 1.5rem;
+          text-align: left;
+        }
+
+        .metric-card {
+          padding: 1.5rem;
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid var(--border);
+          border-radius: 16px;
+          transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+          background: rgba(255, 255, 255, 0.05);
+          border-color: var(--accent);
+        }
+
+        .metric-card h4 {
+          margin: 0 0 0.5rem 0;
+          color: var(--accent);
+          font-size: 1.1rem;
+          font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .metric-card p {
+          margin: 0;
+          font-size: 0.95rem;
+          color: var(--muted);
+          line-height: 1.5;
+        }
+
+        /* HowTo Steps */
+        .howto-steps {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: grid;
+          gap: 1.5rem;
+          text-align: left;
+          max-width: 800px;
+          margin: 0 auto;
+        }
+
+        .howto-steps li {
+          display: flex;
+          gap: 1.5rem;
+          align-items: flex-start;
+          padding: 1.5rem;
+          background: var(--glass-bg);
+          border-radius: 16px;
+          border: 1px solid var(--glass-border);
+        }
+
+        .step-number {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 32px;
+          height: 32px;
+          background: var(--gradient);
+          color: #fff;
+          border-radius: 50%;
+          font-weight: 700;
+          font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .step-text {
+          color: var(--text);
+          font-size: 1.05rem;
+          padding-top: 0.2rem;
+        }
+
+        /* FAQ Grid */
+        .faq-grid {
+          display: grid;
+          gap: 1.5rem;
+          text-align: left;
+          max-width: 800px;
+          margin: 0 auto;
+        }
+
+        .faq-item {
+          padding: 2rem;
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid var(--border);
+          border-radius: 20px;
+        }
+
+        .faq-q, .faq-a {
+          display: flex;
+          gap: 1rem;
+        }
+
+        .faq-q {
+          margin-bottom: 1rem;
+          align-items: center;
+        }
+
+        .faq-q h3 {
+          margin: 0;
+          font-size: 1.2rem;
+          color: var(--text);
+        }
+
+        .q-mark, .a-mark {
+          font-family: 'Space Grotesk', sans-serif;
+          font-weight: 700;
+          font-size: 1.5rem;
+          line-height: 1;
+        }
+
+        .q-mark { color: var(--accent); }
+        .a-mark { color: var(--cta); }
+
+        .faq-a p {
+          margin: 0;
+          color: var(--muted);
+          line-height: 1.6;
         }
 
         /* === Reduced Motion === */

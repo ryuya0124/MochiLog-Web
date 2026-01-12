@@ -5,7 +5,7 @@ import { LocaleContext, initialLocale, translations, Locale } from '../i18n'
 const SITE_URL = 'https://mochilog.ryuya-dev.net'
 
 /** OGP画像のURL */
-const OGP_IMAGE_URL = `${SITE_URL}/ogp.png`
+const OGP_IMAGE_URL = `${SITE_URL}/ogp.jpeg`
 
 interface LayoutProps {
   children: React.ReactNode
@@ -88,6 +88,7 @@ export const Layout = ({ children, title, locale: ssrLocale, description, path =
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+        <script dangerouslySetInnerHTML={{ __html: `history.scrollRestoration = 'manual'` }} />
         <style>{`
           /* === Design Tokens === */
           :root {
@@ -131,7 +132,7 @@ export const Layout = ({ children, title, locale: ssrLocale, description, path =
           }
 
           html, body {
-            height: 100%;
+            min-height: 100%;
             margin: 0;
             padding: 0;
             background: var(--bg);
@@ -313,8 +314,10 @@ export const Layout = ({ children, title, locale: ssrLocale, description, path =
       </head>
       <body>
         <header className="header">
-          <div className="header-logo">{t.common.appName}</div>
+          <a href={`/?lang=${locale}`} className="header-logo">{t.common.appName}</a>
           <nav className="header-nav">
+            <a href={`/?lang=${locale}`} className={path === '/' ? 'active' : ''}>{locale === 'ja' ? 'トップ' : 'Home'}</a>
+            <a href={`/guide?lang=${locale}`} className={path === '/guide' ? 'active' : ''}>{locale === 'ja' ? 'ガイド' : 'Guide'}</a>
             <a href={`?lang=ja`} className={locale === 'ja' ? 'active' : ''}>日本語</a>
             <a href={`?lang=en`} className={locale === 'en' ? 'active' : ''}>English</a>
           </nav>
