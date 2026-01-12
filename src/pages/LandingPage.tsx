@@ -83,18 +83,21 @@ export const LandingPage = () => {
 
       {/* Features Grid */}
       <section className="features-grid">
-        {features.map((f: any, i: number) => {
-          const IconComponent = featureIcons[i] || icons.Sparkles
-          return (
-            <div key={i} className="feature-card">
-              <div className="feature-icon">
-                <IconComponent />
+        <h2 className="section-title">{t.landing.featuresTitle}</h2>
+        <div className="features-container">
+          {features.map((f: any, i: number) => {
+            const IconComponent = featureIcons[i] || icons.Sparkles
+            return (
+              <div key={i} className="feature-card">
+                <div className="feature-icon">
+                  <IconComponent />
+                </div>
+                <h3>{f.title}</h3>
+                <p>{f.description}</p>
               </div>
-              <h3>{f.title}</h3>
-              <p>{f.description}</p>
-            </div>
-          )
-        })}
+            )
+          })}
+        </div>
       </section>
 
       {/* SEO Content Sections */}
@@ -108,7 +111,7 @@ export const LandingPage = () => {
             <div className="metrics-grid">
               {t.landing.seoContent.about.metrics.map((m: any, i: number) => (
                 <div key={i} className="metric-card">
-                  <h4>{m.term}</h4>
+                  <h3>{m.term}</h3>
                   <p>{m.desc}</p>
                 </div>
               ))}
@@ -155,7 +158,7 @@ export const LandingPage = () => {
         <div className="disclaimer-card">
           <div className="disclaimer-header">
             <icons.Warning />
-            <h4>{t.landing.disclaimerTitle.replace('⚠️ ', '')}</h4>
+            <h2>{t.landing.disclaimerTitle.replace('⚠️ ', '')}</h2>
           </div>
           <p>{t.landing.disclaimer}</p>
         </div>
@@ -294,9 +297,24 @@ export const LandingPage = () => {
 
         /* === Features Grid === */
         .features-grid {
+          text-align: center;
+        }
+
+        .section-title {
+          font-size: 2rem;
+          margin-bottom: 2rem;
+          background: var(--gradient);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          display: inline-block;
+        }
+
+        .features-container {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
           gap: 1.5rem;
+          text-align: left;
         }
 
         .feature-card {
@@ -370,7 +388,7 @@ export const LandingPage = () => {
           color: #ff9500;
         }
 
-        .disclaimer-card h4 {
+        .disclaimer-card h2 {
           margin: 0;
           color: #ff9500;
           font-family: 'Space Grotesk', sans-serif;
@@ -407,6 +425,7 @@ export const LandingPage = () => {
           .hero-subtitle { font-size: 1.1rem; }
           .hero-glow { width: 300px; height: 300px; }
           .feature-card { padding: 1.5rem; }
+          .section-title { font-size: 1.75rem; }
         }
 
         /* === SEO Content Sections === */
@@ -457,7 +476,7 @@ export const LandingPage = () => {
           border-color: var(--accent);
         }
 
-        .metric-card h4 {
+        .metric-card h3 {
           margin: 0 0 0.5rem 0;
           color: var(--accent);
           font-size: 1.1rem;

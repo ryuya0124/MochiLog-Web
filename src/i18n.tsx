@@ -14,12 +14,12 @@ export const translations: Record<Locale, any> = {
       contactEmail: 'support@ryuya-dev.net'
     },
     landing: {
-      badge: 'iOS / iPadOS App',
-      title: 'MochiLog',
-      subtitle: 'iPhone・iPadのバッテリー寿命を、\nもっと深く、もっと正確に。',
-      ctaAppStore: 'App Store でチェック',
-      ctaTestFlight: 'TestFlight で試す',
-      comingSoon: 'Coming Soon',
+      badge: 'iOS 17+ 対応',
+      title: 'バッテリー履歴を\nグラフで可視化',
+      subtitle: '設定アプリでは見えない詳細データで、\n劣化の推移を記録・分析',
+      ctaTestFlight: 'TestFlightで試す',
+      ctaAppStore: 'App Store',
+      featuresTitle: '主な機能',
       features: [
         { title: 'ログ解析', description: 'iPhoneのシステムログを解析し、バッテリーの詳細情報をローカルで確認できます。', icon: '📊' },
         { title: '履歴管理 & 分析', description: 'バッテリーの状態を記録し、劣化推移をグラフで可視化。将来の予測も可能です。', icon: '📈' },
@@ -80,17 +80,47 @@ export const translations: Record<Locale, any> = {
         {
           id: 'about',
           title: 'iPhoneの「解析データ」とは？',
-          content: 'iPhoneやiPadは、デバイスの動作状況を日々記録しています。この記録の中に「Analytics Data（解析データ）」と呼ばれるログファイルが含まれており、ここには設定アプリでは表示されない「生のバッテリー数値」が詳細に記録されています。\nMochiLogはこのログを読み取り、可視化するツールです。'
+          intro: 'iPhoneやiPadは、デバイスの動作状況を日々記録しています。この記録の中に「Analytics Data（解析データ）」と呼ばれるログファイルが含まれており、ここには設定アプリでは表示されない「生のバッテリー数値」が詳細に記録されています。',
+          subsections: [
+            {
+              title: 'どんなデータが含まれている？',
+              content: '「Analytics-xxxx」というファイルには、バッテリーの充放電履歴、電圧変動、温度履歴など、ハードウェアの詳細な動作ログが記録されています。MochiLogはこの中から必要な数値だけを抽出して表示します。'
+            },
+            {
+              title: 'プライバシーは安全？',
+              content: 'このデータは端末の診断用であり、個人情報（写真や連絡先など）は一切含まれません。また、MochiLogはすべての解析をオフラインで行うため、安心です。'
+            }
+          ]
         },
         {
           id: 'capacity',
-          title: '「実測容量 (mAh)」と「最大容量 (%)」の違い',
-          content: '設定アプリの「最大容量」は、新品時を100%とした時の比率を示す「目安」に過ぎません。一方、解析データに含まれる「実測容量 (Nominal Charge Capacity)」は、バッテリーが実際に蓄えられる電力量（mAh）を示しています。\n例えば、設定アプリでは「90%」と表示されていても、実測容量の詳細な数値を見ると「88.5%」相当まで劣化している場合や、逆に「92%」相当の性能を維持している場合など、個体差が詳細に分かります。'
+          title: '「実測容量」と「最大容量」の違い',
+          intro: '設定アプリの「最大容量」と、MochiLogで見る「実測容量」は、実はまったく別の数字を見ていることが多いです。',
+          subsections: [
+            {
+              title: '設定アプリの「最大容量」の正体',
+              content: 'これは新品時の設計容量を100%とした場合の「比率」です。しかし、この数値は変動しにくく計算されており、数ヶ月変わらないこともあれば、アップデート後に急に減ることもあります。あくまで目安として設計されています。'
+            },
+            {
+              title: '解析データの「実測容量 (mAh)」',
+              content: '対して解析データにある「Nominal Charge Capacity」は、バッテリーが現在実際に蓄えられる電力量（mAh）を示しています。こちらは物理的な劣化状況をリアルに反映するため、より正確な健康状態を知ることができます。'
+            }
+          ]
         },
         {
           id: 'cycle',
           title: '「充放電回数 (サイクル数)」とは？',
-          content: 'バッテリーを0%から100%まで放電・充電した回数の累計です。継ぎ足し充電を行っても、合計が100%になった時点で1回とカウントされます。\nAppleの公式見解では、iPhoneのバッテリーは「フル充電サイクルを500回（iPhone 15以降は1000回）繰り返した時に、本来の容量の80%を維持するように設計」されています。この回数を知ることは、交換時期を見極めるための最も重要な指標となります。'
+          intro: 'バッテリーの寿命を測る上で、最も信頼できる指標が「サイクル数」です。',
+          subsections: [
+            {
+              title: '1サイクルの定義',
+              content: 'バッテリー容量の100%相当を使い切ると1サイクルとカウントされます。たとえば、今日50%使い、明日50%使った場合、合わせて1サイクルとなります。一気に0%にする必要はありません。'
+            },
+            {
+              title: '交換の目安は？',
+              content: 'Apple公式では「500回（iPhone 14以前） または 1000回（iPhone 15以降）」のサイクル数で、本来の容量の80%を維持するように設計されています。この回数に近づくと、バッテリーの持ちが悪くなったと感じるようになります。'
+            }
+          ]
         }
       ]
     },
@@ -153,12 +183,13 @@ export const translations: Record<Locale, any> = {
       contactEmail: 'support@ryuya-dev.net'
     },
     landing: {
-      badge: 'iOS / iPadOS App',
-      title: 'MochiLog',
-      subtitle: 'Understand your iPhone and iPad battery life\nmore deeply and accurately.',
-      ctaAppStore: 'View on App Store',
+      badge: 'iOS 17+ Ready',
+      title: 'Visualize Battery\nHistory & Trends',
+      subtitle: 'Track capacity and cycle counts\nwith detailed log analysis',
+      ctaAppStore: 'App Store',
       ctaTestFlight: 'Try on TestFlight',
       comingSoon: 'Coming Soon',
+      featuresTitle: 'Key Features',
       features: [
         { title: 'Log Analysis', description: 'Parse iPhone system logs and view detailed battery information locally.', icon: '📊' },
         { title: 'History & Analysis', description: 'Record battery health over time and visualize degradation with graphs.', icon: '📈' },
@@ -220,17 +251,47 @@ export const translations: Record<Locale, any> = {
         {
           id: 'about',
           title: 'What is "Analytics Data"?',
-          content: 'iPhones and iPads record daily device performance in system logs. Among these is "Analytics Data," which contains detailed "raw battery metrics" not shown in the Settings app.\nMochiLog is a tool that reads and visualizes this data.'
+          intro: 'iPhones and iPads record daily device performance in system logs. Among these is "Analytics Data," which contains detailed "raw battery metrics" not shown in the Settings app.',
+          subsections: [
+            {
+              title: 'What\'s inside the logs?',
+              content: 'Files named "Analytics-xxxx" contain detailed hardware logs including charge/discharge history, voltage changes, and temperature history. MochiLog extracts only the necessary battery metrics for you.'
+            },
+            {
+              title: 'Is it safe?',
+              content: 'This data is for device diagnostics only and contains absolutely no personal information like photos or contacts. Furthermore, MochiLog processes everything offline on your device.'
+            }
+          ]
         },
         {
           id: 'capacity',
-          title: 'Real Capacity (mAh) vs Maximum Capacity (%)',
-          content: '"Maximum Capacity" in Settings is just a rough estimate relative to when the device was new (100%). "Real Capacity (Nominal Charge Capacity)" in the analytics data shows the actual amount of power (mAh) your battery can currently hold.\nEven if Settings says "90%", the real capacity might be "88.5%" or "92%". Detailed logs reveal these individual differences.'
+          title: 'Real Capacity vs Maximum Capacity',
+          intro: 'The "Maximum Capacity" shown in Settings and the "Real Capacity" seen in MochiLog are often completely different numbers.',
+          subsections: [
+            {
+              title: 'The truth about Settings "Maximum Capacity"',
+              content: 'This is a calculated ratio based on the design capacity when new (100%). It is designed to be stable, so it might not change for months, or might drop suddenly after an update. It is just a rough estimate.'
+            },
+            {
+              title: 'Real Capacity (mAh) in Analytics',
+              content: 'The "Nominal Charge Capacity" in the logs shows the actual remaining power capacity (mAh). This reflects physical degradation more realistically, giving you a more accurate picture of battery health.'
+            }
+          ]
         },
         {
           id: 'cycle',
           title: 'What is "Cycle Count"?',
-          content: 'This is the total number of times the battery has been discharged and recharged from 0% to 100%. Even with top-up charging, one cycle is counted when the total discharge reaches 100%.\nApple states that iPhone batteries are designed to retain 80% of their original capacity after 500 complete charge cycles (1000 for iPhone 15 and later). Knowing this count is crucial for determining when to replace your battery.'
+          intro: 'Cycle count is the most reliable metric for measuring battery lifespan.',
+          subsections: [
+            {
+              title: 'Definition of 1 Cycle',
+              content: 'Using 100% of your battery\'s capacity equals one charge cycle. For example, if you use 50% today and 50% tomorrow, that counts as one cycle. You don\'t need to drain it to 0% at once.'
+            },
+            {
+              title: 'When to replace?',
+              content: 'Apple states that batteries are designed to retain 80% of their original capacity after 500 cycles (or 1000 cycles for iPhone 15 and later). Approaching this count often correlates with noticeable battery drain.'
+            }
+          ]
         }
       ]
     },

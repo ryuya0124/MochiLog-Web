@@ -22,11 +22,26 @@ export const GuidePage = () => {
         {content.sections.map((section: any) => (
           <article key={section.id} className="guide-article" id={section.id}>
             <h2>{section.title}</h2>
-            <p className="guide-text">
-              {section.content.split('\n').map((line: string, i: number) => (
-                <React.Fragment key={i}>{i > 0 && <br />}{line}</React.Fragment>
-              ))}
-            </p>
+            {section.intro && <p className="guide-intro">{section.intro}</p>}
+            
+            {section.content && !section.subsections && (
+               <p className="guide-text">
+                 {section.content.split('\n').map((line: string, i: number) => (
+                   <React.Fragment key={i}>{i > 0 && <br />}{line}</React.Fragment>
+                 ))}
+               </p>
+            )}
+
+            {section.subsections && (
+              <div className="guide-subsections">
+                {section.subsections.map((sub: any, j: number) => (
+                  <div key={j} className="guide-subsection">
+                    <h3>{sub.title}</h3>
+                    <p className="guide-text">{sub.content}</p>
+                  </div>
+                ))}
+              </div>
+            )}
           </article>
         ))}
       </div>
@@ -83,10 +98,44 @@ export const GuidePage = () => {
           border-bottom: 1px solid var(--border);
         }
 
-        .guide-text {
-          font-size: 1.1rem;
-          line-height: 1.8;
+        .guide-intro {
+          font-size: 1.15rem;
           color: var(--text);
+          margin-bottom: 2rem;
+          line-height: 1.8;
+          font-weight: 500;
+        }
+
+        .guide-subsection {
+          margin-bottom: 2rem;
+        }
+
+        .guide-subsection:last-child {
+          margin-bottom: 0;
+        }
+
+        .guide-subsection h3 {
+          font-size: 1.3rem;
+          color: var(--text);
+          margin-bottom: 0.75rem;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .guide-subsection h3::before {
+          content: '';
+          display: block;
+          width: 6px;
+          height: 24px;
+          background: var(--gradient);
+          border-radius: 4px;
+        }
+
+        .guide-text {
+          font-size: 1.05rem;
+          line-height: 1.8;
+          color: var(--muted);
           margin: 0;
         }
 
@@ -94,6 +143,7 @@ export const GuidePage = () => {
           .guide-hero h1 { font-size: 2.25rem; }
           .guide-article { padding: 1.5rem; }
           .guide-article h2 { font-size: 1.4rem; }
+          .guide-subsection h3 { font-size: 1.15rem; }
         }
       `}</style>
     </div>
