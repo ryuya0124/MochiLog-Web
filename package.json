@@ -3,9 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "dep": "pnpm build && wrangler deploy --minify src/index.tsx"
+    "dev": "vite --host 127.0.0.1",
+    "typecheck": "tsc --noEmit",
+    "build": "pnpm typecheck && wrangler deploy --dry-run --outdir dist",
+    "test": "playwright test",
+    "preview": "wrangler dev --ip 127.0.0.1 --port 8787",
+    "deploy": "pnpm typecheck && wrangler deploy",
+    "dep": "pnpm deploy"
   },
   "dependencies": {
     "hono": "^4.11.3",
@@ -13,11 +17,15 @@
     "react-dom": "^19.2.3"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20260103.0",
+    "@axe-core/playwright": "^4.13.0",
+    "@cloudflare/workers-types": "^5.20260907.1",
     "@hono/vite-dev-server": "^0.24.0",
+    "@playwright/test": "1.63.0",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
+    "typescript": "5.9.3",
     "vite": "^7.3.0",
-    "wrangler": "^4.54.0"
-  }
+    "wrangler": "^4.129.1"
+  },
+  "packageManager": "pnpm@10.27.0"
 }

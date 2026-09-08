@@ -5,3 +5,5 @@
 /logs
 *.log
 .wrangler
+/test-results
+/playwright-report

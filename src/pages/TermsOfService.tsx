@@ -1,8 +1,8 @@
-import React from 'react'
-import { useLocaleContext } from '../i18n'
+import React from "react";
+import { useLocaleContext } from "../i18n";
 
 export const TermsOfService = () => {
-  const { t, locale } = useLocaleContext()
+  const { t, locale } = useLocaleContext();
 
   return (
     <div className="policy-page animate-fade-in">
@@ -10,7 +10,7 @@ export const TermsOfService = () => {
         <h1>{t.terms.title}</h1>
         <p className="intro-text">{t.terms.intro}</p>
 
-        {t.terms.articles.map((a: any) => (
+        {t.terms.articles.map((a) => (
           <section key={a.id} className="policy-section">
             <h2>{a.title}</h2>
             {a.paragraphs.map((p: string, i: number) => (
@@ -27,7 +27,9 @@ export const TermsOfService = () => {
         ))}
 
         <div className="policy-footer">
-          <a href={`/?lang=${locale}`} className="back-link">{t.common.homeLink}</a>
+          <a href={`/?lang=${locale}`} className="back-link">
+            {t.common.homeLink}
+          </a>
         </div>
       </div>
 
@@ -95,5 +97,5 @@ export const TermsOfService = () => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
