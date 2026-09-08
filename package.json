@@ -9,7 +9,7 @@
     "test": "playwright test",
     "preview": "wrangler dev --ip 127.0.0.1 --port 8787",
     "deploy": "pnpm typecheck && wrangler deploy",
-    "dep": "pnpm deploy"
+    "dep": "pnpm run deploy"
   },
   "dependencies": {
     "hono": "^4.11.3",

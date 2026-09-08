@@ -26,7 +26,7 @@ pnpm test
 pnpm exec wrangler versions upload --preview-alias redesign
 
 # 本番反映時のみ
-pnpm deploy
+pnpm run deploy
 ```
 
 既存のWorker名・公開ドメインは維持しています。静的アセットは `public/`、サイトマップはSSRルートから生成します。プレビューのHTMLはnoindexです。
