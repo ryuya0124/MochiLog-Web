@@ -1,337 +1,192 @@
-import React from 'react'
-import { LocaleContext, initialLocale, translations, Locale } from '../i18n'
+import type { ReactNode } from "react";
+import { LocaleContext, translations, type Locale } from "../i18n";
+import { APP_STORE, SITE_URL, copy } from "../content";
 
-/** サイトのベースURL */
-const SITE_URL = 'https://mochilog.ryuya-dev.net'
-
-/** OGP画像のURL */
-const OGP_IMAGE_URL = `${SITE_URL}/ogp.jpeg`
-
-interface LayoutProps {
-  children: React.ReactNode
-  title: string
-  locale?: Locale
-  /** ページの説明文（SEO・OGP用） */
-  description?: string
-  /** ページのパス（例: /privacy） */
-  path?: string
-}
-
-export const Layout = ({ children, title, locale: ssrLocale, description, path = '' }: LayoutProps) => {
-  const [locale, setLocale] = React.useState<Locale>(() => {
-    if (ssrLocale) return ssrLocale
-    return (typeof window === 'undefined') ? 'ja' : initialLocale()
-  })
-  const t = translations[locale]
-
-  React.useEffect(() => {
-    try { localStorage.setItem('locale', locale) } catch {}
-  }, [locale])
-
-  // デフォルトの説明文
-  const defaultDescription = locale === 'ja'
-    ? 'MochiLogはiPhone・iPadのバッテリー状態を詳細に解析・管理できるアプリです。充放電サイクル、容量劣化、健康状態の推移をグラフで可視化。'
-    : 'MochiLog is a battery analytics app for iPhone and iPad. Track charge cycles, capacity degradation, and health trends with detailed graphs.'
-
-  const metaDescription = description || defaultDescription
-  const canonicalUrl = `${SITE_URL}${path}`
-  const ogLocale = locale === 'ja' ? 'ja_JP' : 'en_US'
-
+export function Layout({
+  children,
+  title,
+  locale = "ja",
+  description,
+  path = "/",
+  noIndex = false,
+}: {
+  children: ReactNode;
+  title: string;
+  locale?: Locale;
+  description?: string;
+  path?: string;
+  noIndex?: boolean;
+}) {
+  const t = copy[locale];
+  const common = translations[locale].common;
+  const canonical = `${SITE_URL}${path}?lang=${locale}`;
+  const nav = (
+    <>
+      <a href={`/?lang=${locale}#features`}>{t.nav[0]}</a>
+      <a
+        href={`/guide?lang=${locale}`}
+        aria-current={path === "/guide" ? "page" : undefined}
+      >
+        {t.nav[1]}
+      </a>
+      <a
+        href={`/support?lang=${locale}`}
+        aria-current={path === "/support" ? "page" : undefined}
+      >
+        {t.nav[2]}
+      </a>
+    </>
+  );
+  const language = (
+    <div
+      className="locale-nav"
+      aria-label={locale === "ja" ? "表示言語" : "Language"}
+    >
+      <a
+        href={`${path}?lang=ja`}
+        lang="ja"
+        hrefLang="ja"
+        aria-current={locale === "ja" ? "true" : undefined}
+      >
+        日本語
+      </a>
+      <a
+        href={`${path}?lang=en`}
+        lang="en"
+        hrefLang="en"
+        aria-current={locale === "en" ? "true" : undefined}
+      >
+        EN
+      </a>
+    </div>
+  );
   return (
-    <LocaleContext.Provider value={{ locale, setLocale, t }}>
-      <html lang={locale === 'ja' ? 'ja' : 'en'}>
-      <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{title}</title>
-
-        {/* === 基本SEOメタタグ === */}
-        <meta name="description" content={metaDescription} />
-        <meta name="keywords" content="MochiLog, バッテリー, battery, iPhone, iPad, 解析, analytics, 健康状態, health, iOS, アプリ, app" />
-        <meta name="author" content="Ryuya" />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href={canonicalUrl} />
-
-        {/* === OGP（Open Graph Protocol）メタタグ === */}
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={metaDescription} />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content={OGP_IMAGE_URL} />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:site_name" content="MochiLog" />
-        <meta property="og:locale" content={ogLocale} />
-
-        {/* === Twitter Cards メタタグ === */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={metaDescription} />
-        <meta name="twitter:image" content={OGP_IMAGE_URL} />
-
-        {/* === hreflang (多言語対応) === */}
-        <link rel="alternate" hrefLang="ja" href={`${SITE_URL}${path}?lang=ja`} />
-        <link rel="alternate" hrefLang="en" href={`${SITE_URL}${path}?lang=en`} />
-        <link rel="alternate" hrefLang="x-default" href={`${SITE_URL}${path}`} />
-
-        {/* === JSON-LD 構造化データ: WebSite === */}
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          "name": "MochiLog",
-          "url": SITE_URL,
-          "inLanguage": ["ja", "en"],
-          "description": metaDescription
-        }) }} />
-
-        {/* Google Fonts: Space Grotesk + DM Sans */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-        <script dangerouslySetInnerHTML={{ __html: `history.scrollRestoration = 'manual'` }} />
-        <style>{`
-          /* === Design Tokens === */
-          :root {
-            /* ダークモード (デフォルト) */
-            --bg: #050510;
-            --bg-secondary: #0a0a1a;
-            --container-bg: rgba(255,255,255,0.05);
-            --text: #e0e0ff;
-            --muted: #94a3b8;
-            --accent: #00FFFF;
-            --accent-secondary: #7B61FF;
-            --cta: #FF00FF;
-            --gradient: linear-gradient(135deg, #00FFFF, #7B61FF, #FF00FF);
-            --shadow: rgba(0,0,0,0.8);
-            --border: rgba(255,255,255,0.1);
-            --glass-bg: rgba(255,255,255,0.05);
-            --glass-border: rgba(255,255,255,0.1);
-          }
-
-          @media (prefers-color-scheme: light) {
-            :root {
-              --bg: #f8fafc;
-              --bg-secondary: #f1f5f9;
-              --container-bg: rgba(255,255,255,0.8);
-              --text: #0f172a;
-              --muted: #475569;
-              --accent: #0080FF;
-              --accent-secondary: #5D34D0;
-              --cta: #BF00FF;
-              --gradient: linear-gradient(135deg, #0080FF, #5D34D0, #BF00FF);
-              --shadow: rgba(0,0,0,0.1);
-              --border: rgba(0,0,0,0.1);
-              --glass-bg: rgba(255,255,255,0.7);
-              --glass-border: rgba(0,0,0,0.1);
-            }
-          }
-
-          /* === Reset & Base === */
-          *, *::before, *::after {
-            box-sizing: border-box;
-          }
-
-          html, body {
-            min-height: 100%;
-            margin: 0;
-            padding: 0;
-            background: var(--bg);
-            color: var(--text);
-            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-          }
-
-          h1, h2, h3, h4, h5, h6 {
-            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
-            font-weight: 600;
-            line-height: 1.2;
-          }
-
-          /* === Container === */
-          .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem;
-            padding-top: 100px; /* ヘッダー分の余白 */
-          }
-
-          /* === Floating Header === */
-          .header {
-            position: fixed;
-            top: 16px;
-            left: 16px;
-            right: 16px;
-            z-index: 100;
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 0.75rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 8px 32px var(--shadow);
-            transition: all 0.3s ease;
-          }
-
-          .header-logo {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 1.25rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-          }
-
-          .header-nav {
-            display: flex;
-            gap: 0.5rem;
-          }
-
-          .header-nav a {
-            padding: 0.5rem 0.75rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            color: var(--muted);
-            text-decoration: none;
-            transition: all 0.2s ease;
-          }
-
-          .header-nav a:hover {
-            color: var(--text);
-            background: var(--container-bg);
-          }
-
-          .header-nav a.active {
-            color: var(--accent);
-            font-weight: 500;
-          }
-
-          /* === Card (Glassmorphism) === */
-          .card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 8px 32px var(--shadow);
-          }
-
-          /* === Typography === */
-          h1 { 
-            font-size: 2.5rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1.5rem;
-          }
-          
-          h2 { 
-            font-size: 1.5rem;
-            color: var(--accent);
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 0.5rem;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-          }
-
-          h3 {
-            font-size: 1.25rem;
-            color: var(--text);
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-          }
-
-          p {
-            color: var(--muted);
-            margin-bottom: 1rem;
-          }
-
-          /* === Links === */
-          a { 
-            color: var(--accent);
-            text-decoration: none;
-            transition: all 0.2s ease;
-          }
-          
-          a:hover { 
-            color: var(--cta);
-          }
-
-          /* === Footer === */
-          footer { 
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
-            text-align: center;
-            font-size: 0.9rem;
-            color: var(--muted);
-          }
-
-          /* === Animations === */
-          @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-          }
-
-          .animate-fade-in {
-            animation: fadeIn 0.6s ease forwards;
-          }
-
-          /* === Reduced Motion === */
-          @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-              animation-duration: 0.01ms !important;
-              animation-iteration-count: 1 !important;
-              transition-duration: 0.01ms !important;
-            }
-          }
-
-          /* === Responsive === */
-          @media (max-width: 600px) {
-            .header {
-              top: 8px;
-              left: 8px;
-              right: 8px;
-              padding: 0.5rem 1rem;
-            }
-
-            .container {
-              padding: 1rem;
-              padding-top: 80px;
-            }
-
-            h1 { font-size: 2rem; }
-            h2 { font-size: 1.25rem; }
-          }
-        `}</style>
-      </head>
-      <body>
-        <header className="header">
-          <a href={`/?lang=${locale}`} className="header-logo">{t.common.appName}</a>
-          <nav className="header-nav">
-            <a href={`/?lang=${locale}`} className={path === '/' ? 'active' : ''}>{locale === 'ja' ? 'トップ' : 'Home'}</a>
-            <a href={`/guide?lang=${locale}`} className={path === '/guide' ? 'active' : ''}>{locale === 'ja' ? 'ガイド' : 'Guide'}</a>
-            <a href={`?lang=ja`} className={locale === 'ja' ? 'active' : ''}>日本語</a>
-            <a href={`?lang=en`} className={locale === 'en' ? 'active' : ''}>English</a>
-          </nav>
-        </header>
-
-        <div className="container">
-          {children}
-
-          <footer>
-            <p>&copy; {new Date().getFullYear()} MochiLog</p>
+    <LocaleContext.Provider value={{ locale, t: translations[locale] }}>
+      <html lang={locale}>
+        <head>
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <title>{title}</title>
+          <meta name="description" content={description ?? t.description} />
+          <meta name="theme-color" content="#f6f8f3" />
+          <meta
+            name="robots"
+            content={noIndex ? "noindex, follow" : "index, follow"}
+          />
+          <link rel="canonical" href={canonical} />
+          <link
+            rel="alternate"
+            hrefLang="ja"
+            href={`${SITE_URL}${path}?lang=ja`}
+          />
+          <link
+            rel="alternate"
+            hrefLang="en"
+            href={`${SITE_URL}${path}?lang=en`}
+          />
+          <link
+            rel="alternate"
+            hrefLang="x-default"
+            href={`${SITE_URL}${path}`}
+          />
+          <link rel="icon" type="image/png" href="/app-icon.png" />
+          <link rel="apple-touch-icon" href="/app-icon.png" />
+          <meta property="og:title" content={title} />
+          <meta
+            property="og:description"
+            content={description ?? t.description}
+          />
+          <meta property="og:url" content={canonical} />
+          <meta property="og:type" content="website" />
+          <meta property="og:site_name" content="MochiLog" />
+          <meta
+            property="og:locale"
+            content={locale === "ja" ? "ja_JP" : "en_US"}
+          />
+          <meta property="og:image" content={`${SITE_URL}/ogp.jpeg`} />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:image" content={`${SITE_URL}/ogp.jpeg`} />
+          <link rel="stylesheet" href="/styles.css" />
+          {path === "/" && (
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "SoftwareApplication",
+                  name: "MochiLog",
+                  operatingSystem: "iOS 16+, iPadOS 16+, watchOS 9+",
+                  applicationCategory: "UtilitiesApplication",
+                  url: SITE_URL,
+                  downloadUrl: APP_STORE,
+                  description: t.description,
+                }).replace(/</g, "\\u003c"),
+              }}
+            />
+          )}
+        </head>
+        <body>
+          <a className="skip-link" href="#main-content">
+            {t.skip}
+          </a>
+          <header className="site-header">
+            <div className="wrap header-inner">
+              <a className="brand" href={`/?lang=${locale}`}>
+                <img src="/app-icon.png" alt="" width="34" height="34" />
+                <span>
+                  MochiLog<span className="brand-dot">.</span>
+                </span>
+              </a>
+              <nav
+                className="desktop-nav"
+                aria-label={
+                  locale === "ja" ? "メインナビゲーション" : "Main navigation"
+                }
+              >
+                {nav}
+              </nav>
+              <div className="desktop-language">{language}</div>
+              <details className="mobile-menu">
+                <summary>
+                  {t.menu}
+                  <span aria-hidden="true">＋</span>
+                </summary>
+                <nav
+                  aria-label={
+                    locale === "ja"
+                      ? "モバイルナビゲーション"
+                      : "Mobile navigation"
+                  }
+                >
+                  {nav}
+                  {language}
+                </nav>
+              </details>
+            </div>
+          </header>
+          <main
+            id="main-content"
+            className={path === "/" ? "" : "document-main wrap"}
+            tabIndex={-1}
+          >
+            {children}
+          </main>
+          <footer className="site-footer wrap">
+            <div>
+              <a className="brand" href={`/?lang=${locale}`}>
+                MochiLog<span className="brand-dot">.</span>
+              </a>
+              <p>© {new Date().getFullYear()} MochiLog</p>
+            </div>
+            <nav aria-label={locale === "ja" ? "フッター" : "Footer"}>
+              <a href={`/privacy?lang=${locale}`}>{common.privacy}</a>
+              <a href={`/terms?lang=${locale}`}>{common.terms}</a>
+              <a href={`/support?lang=${locale}`}>{common.support}</a>
+              <a href="https://github.com/ryuya0124/MochiLog">GitHub ↗</a>
+            </nav>
           </footer>
-        </div>
-      </body>
+        </body>
       </html>
     </LocaleContext.Provider>
-  )
+  );
 }

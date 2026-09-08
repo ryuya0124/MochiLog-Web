@@ -1,12 +1,27 @@
-import React from 'react'
-import { useLocaleContext } from '../i18n'
+import React from "react";
+import { useLocaleContext } from "../i18n";
 
 export const PrivacyPolicy = () => {
-  const { t, locale } = useLocaleContext()
+  const { t, locale } = useLocaleContext();
 
-  const sectionTitles = locale === 'en' 
-    ? ['Collection of Personal Information', 'Purpose of Use', 'Third-Party Disclosure', 'Advertising and Analytics', 'Changes to This Policy', 'Contact']
-    : ['個人情報の収集について', 'データの利用目的', 'データの第三者提供', '広告および解析ツールについて', 'プライバシーポリシーの変更', 'お問い合わせ窓口']
+  const sectionTitles =
+    locale === "en"
+      ? [
+          "Collection of Personal Information",
+          "Purpose of Use",
+          "Third-Party Disclosure",
+          "Advertising and Analytics",
+          "Changes to This Policy",
+          "Contact",
+        ]
+      : [
+          "個人情報の収集について",
+          "データの利用目的",
+          "データの第三者提供",
+          "広告および解析ツールについて",
+          "プライバシーポリシーの変更",
+          "お問い合わせ窓口",
+        ];
 
   return (
     <div className="policy-page animate-fade-in">
@@ -47,7 +62,9 @@ export const PrivacyPolicy = () => {
 
         <div className="policy-footer">
           <p className="date">{t.privacy.date}</p>
-          <a href={`/?lang=${locale}`} className="back-link">{t.common.homeLink}</a>
+          <a href={`/?lang=${locale}`} className="back-link">
+            {t.common.homeLink}
+          </a>
         </div>
       </div>
 
@@ -107,5 +124,5 @@ export const PrivacyPolicy = () => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
