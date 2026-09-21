@@ -45,3 +45,11 @@ SimulatorのDebugビルド限定で `MOCHI_TEST_DISTRIBUTOR=appStore|testFlight|
 - https://faq.altstore.io/developers/distribute-with-altstore-pal
 - https://faq.altstore.io/developers/rest-api
 - https://faq.altstore.io/developers/make-a-source
+
+## 2026-09-22 作業記録
+
+- 共通sourceとMochiLog Webへ準備中案内を公開。sourceのMochiLogは `versions: []`。
+- 3.2.1のビルド1014の審査はユーザー指示で取り消し、PAL対応を3.2.1へ統合。新ビルド番号は1015（3.2.2は使用しない）。
+- 日英リリースノートは3.2.1の変更点と3.2.0の既存全文を保持。
+- Marketplace/App Store/TestFlightのUI切り替えテストが成功。Webの15テストも成功。
+- 公証ADPは未取得。ADP取得・権限/ハッシュ照合・R2アップロード・version公開・PAL実機検証が完了するまでは、配信中と案内しない。
