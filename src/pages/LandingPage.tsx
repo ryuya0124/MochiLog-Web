@@ -145,6 +145,12 @@ export const LandingPage = () => {
             </a>
           </div>
           <p className="hero-meta">
+            <a href="https://altstore.ryuya-dev.net/#mochilog">AltStore PAL</a>
+            {locale === "ja"
+              ? "版も配信準備中です。PAL版はアプリ内課金（寄付）なし。"
+              : " distribution is in preparation. The PAL version will have no in-app donations."}
+          </p>
+          <p className="hero-meta">
             {t.free}
             <span aria-hidden="true"> · </span>
             {t.platforms}
