@@ -534,6 +534,73 @@ a[aria-current="page"] {
 .feature-0 {
   background: var(--soft);
 }
+.mac-preview {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: clamp(24px, 6vw, 96px);
+  align-items: center;
+  border-top: 1px solid var(--border);
+}
+.mac-preview h2 {
+  font-size: clamp(2rem, 4vw, 3.7rem);
+  line-height: 1.2;
+  letter-spacing: -0.055em;
+  margin: 16px 0 24px;
+}
+.mac-preview-copy > p:not(.eyebrow) {
+  max-width: 620px;
+  line-height: 1.95;
+}
+.mac-preview ul {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0;
+}
+.mac-preview li {
+  padding: 9px 0 9px 30px;
+  position: relative;
+  border-bottom: 1px solid var(--border);
+}
+.mac-preview li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+.mac-preview small { color: var(--muted); line-height: 1.8; display: block; }
+.mac-preview-visual {
+  min-height: 340px;
+  border-radius: 24px;
+  background: var(--soft);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+}
+.mac-preview-device {
+  width: min(75%, 250px);
+  padding: 22px 16px;
+  border-radius: 14px;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  text-align: center;
+  font-weight: 700;
+  box-shadow: 0 12px 30px rgba(0,0,0,.04);
+}
+.mac-preview-link { width: 2px; height: 32px; background: var(--accent); }
+.mac-preview-status {
+  color: var(--accent);
+  font-size: .72rem;
+  font-weight: 750;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+@media (max-width: 720px) {
+  .mac-preview { grid-template-columns: 1fr; }
+  .mac-preview-visual { min-height: 260px; }
+}
 .privacy-band {
   background: #1a382b;
   color: #f4f8ef;

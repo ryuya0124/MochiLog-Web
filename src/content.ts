@@ -59,6 +59,15 @@ export const copy = {
         text: "ペアリングしたApple Watchに記録を転送。iPhoneで読み込んだデバイスの状態を閲覧できます。Watch自体を常時測定する機能ではありません。",
       },
     ],
+    macKicker: "COMING SOON · MAC連携ベータ",
+    macTitle: "ログを探す時間を、\n記録を見る時間に。",
+    macIntro: "MochiLog Macが、ロック解除中のiPhoneやiPadからバッテリー解析ログを収集。アプリを開いたときに同じWi-Fiで受け取り、端末上で解析・記録できます。",
+    macBenefits: [
+      "iPhoneに保存されたApple Watchのログにも対応",
+      "MacからiPhone/iPadへ暗号化してまとめて転送",
+      "個体ごとの履歴を区別し、iCloud同期は任意で利用",
+    ],
+    macFootnote: "iOS/iPadOS 27・macOS 27以降向けに開発中です。初回ペアリングとログ収集には条件があります。一般公開はまだ行っていません。",
     privacyKicker: "PRIVATE BY DESIGN",
     privacyTitle: "解析は、あなたの端末で。",
     privacyText:
@@ -172,6 +181,15 @@ export const copy = {
         text: "Send records to your paired Apple Watch and view the devices imported on your iPhone. This does not continuously measure the Watch’s own battery.",
       },
     ],
+    macKicker: "COMING SOON · MAC TRANSFER BETA",
+    macTitle: "Less time finding logs.\nMore time seeing the story.",
+    macIntro: "MochiLog Mac will collect battery analytics logs from an unlocked iPhone or iPad. Open the mobile app to receive them over the same Wi-Fi network, then analyze and save records on your device.",
+    macBenefits: [
+      "Includes paired Apple Watch logs stored on iPhone",
+      "Transfers batches securely from Mac to iPhone or iPad",
+      "Keeps physical devices distinct; iCloud sync remains optional",
+    ],
+    macFootnote: "In development for iOS/iPadOS 27 and macOS 27 or later. Initial pairing and log collection have requirements. This feature is not publicly available yet.",
     privacyKicker: "PRIVATE BY DESIGN",
     privacyTitle: "Your logs. Your device.",
     privacyText:

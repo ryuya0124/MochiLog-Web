@@ -201,6 +201,27 @@ export const LandingPage = () => {
           ))}
         </div>
       </section>
+      <section className="mac-preview wrap section-space" aria-labelledby="mac-preview-title">
+        <div className="mac-preview-copy">
+          <p className="eyebrow">{t.macKicker}</p>
+          <h2 id="mac-preview-title">
+            {t.macTitle.split("\n").map((line, index) => (
+              <span key={line}>{index > 0 && <br />}{line}</span>
+            ))}
+          </h2>
+          <p>{t.macIntro}</p>
+          <ul>
+            {t.macBenefits.map((benefit) => <li key={benefit}>{benefit}</li>)}
+          </ul>
+          <small>{t.macFootnote}</small>
+        </div>
+        <div className="mac-preview-visual" aria-hidden="true">
+          <div className="mac-preview-device">Mac</div>
+          <div className="mac-preview-link" />
+          <div className="mac-preview-device">iPhone / iPad</div>
+          <div className="mac-preview-status">Coming soon</div>
+        </div>
+      </section>
       <section className="privacy-band">
         <div className="wrap privacy-content">
           <div className="privacy-symbol" aria-hidden="true">
