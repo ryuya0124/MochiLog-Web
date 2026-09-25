@@ -182,7 +182,7 @@ export function Layout({
               <a href={`/privacy?lang=${locale}`}>{common.privacy}</a>
               <a href={`/terms?lang=${locale}`}>{common.terms}</a>
               <a href={`/support?lang=${locale}`}>{common.support}</a>
-              <a href="https://github.com/ryuya0124/MochiLog">GitHub ↗</a>
+              <a href="https://github.com/MochiLog/MochiLog">GitHub ↗</a>
             </nav>
           </footer>
         </body>

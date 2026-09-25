@@ -2,9 +2,9 @@
 
 **MochiLogの機能と使い方を伝える、公式紹介サイト。**
 
-iPhone・iPadの解析ログを記録するアプリ [MochiLog](https://github.com/ryuya0124/MochiLog) のWebサイトです。HonoとReactでHTMLをサーバーレンダリングし、Cloudflare Workersで配信します。
+iPhone・iPadの解析ログを記録するアプリ [MochiLog](https://github.com/MochiLog/MochiLog) のWebサイトです。HonoとReactでHTMLをサーバーレンダリングし、Cloudflare Workersで配信します。
 
-[公開サイト](https://mochilog.ryuya-dev.net/) · [改修版プレビュー](https://redesign-20260908-mochilog-web.ryuya1adgjmptw.workers.dev/?lang=ja) · [アプリのGitHub](https://github.com/ryuya0124/MochiLog) · [App Store](https://apps.apple.com/app/mochilog/id6756904240)
+[公開サイト](https://mochilog.ryuya-dev.net/) · [改修版プレビュー](https://redesign-20260908-mochilog-web.ryuya1adgjmptw.workers.dev/?lang=ja) · [アプリのGitHub](https://github.com/MochiLog/MochiLog) · [App Store](https://apps.apple.com/app/mochilog/id6756904240)
 
 ## このリポジトリについて
 
@@ -42,7 +42,7 @@ iPhone・iPadの解析ログを記録するアプリ [MochiLog](https://github.c
 | 検証 | TypeScript、Playwright、axe-core |
 
 ```sh
-git clone https://github.com/ryuya0124/MochiLog-Web.git
+git clone https://github.com/MochiLog/MochiLog-Web.git
 cd MochiLog-Web
 pnpm install --frozen-lockfile
 pnpm dev
@@ -137,9 +137,9 @@ Worker名は `mochilog-web`。設定は [wrangler.toml](wrangler.toml) にあり
 
 ## 関連リンク・License
 
-- [MochiLog本体](https://github.com/ryuya0124/MochiLog)
-- [アプリ改修ブランチのREADME](https://github.com/ryuya0124/MochiLog/blob/refactor/ios27-batch-import-adaptive-ui-20260908/README.md)
-- [GitHub Issues](https://github.com/ryuya0124/MochiLog-Web/issues)
+- [MochiLog本体](https://github.com/MochiLog/MochiLog)
+- [アプリ改修ブランチのREADME](https://github.com/MochiLog/MochiLog/blob/refactor/ios27-batch-import-adaptive-ui-20260908/README.md)
+- [GitHub Issues](https://github.com/MochiLog/MochiLog-Web/issues)
 - [LICENSE](LICENSE)
 
 ## English overview
