@@ -71,7 +71,7 @@ export const copy = {
     privacyKicker: "PRIVATE BY DESIGN",
     privacyTitle: "解析は、あなたの端末で。",
     privacyText:
-      "ログの解析は端末内で処理します。iCloud同期は自分で選択でき、同期する記録は自分のプライベートデータベースへ。開発者がバッテリー記録を収集する仕組みはありません。",
+      "ログの解析は端末内で処理し、iCloud同期は任意です。Mac連携もローカルで転送します。問い合わせを送信した場合だけ、選んだ内容と診断情報がサポートに届きます。",
     privacyLink: "データの扱いについて",
     howKicker: "GETTING STARTED",
     howTitle: "最初の記録まで、3ステップ。",
@@ -193,7 +193,7 @@ export const copy = {
     privacyKicker: "PRIVATE BY DESIGN",
     privacyTitle: "Your logs. Your device.",
     privacyText:
-      "Log analysis happens on your device. Choose whether to sync records with your private iCloud database. The developer does not collect your battery records.",
+      "Log analysis runs on your device. iCloud sync is optional, and Mac transfer stays on your local network. Support receives the information you send when you contact us.",
     privacyLink: "How your data is handled",
     howKicker: "GETTING STARTED",
     howTitle: "Your first record, in 3 steps.",

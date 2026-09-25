@@ -4,23 +4,22 @@ import { useLocaleContext } from "../i18n";
 export const PrivacyPolicy = () => {
   const { t, locale } = useLocaleContext();
 
-  const sectionTitles =
-    locale === "en"
+  const sectionTitles = locale === "en"
       ? [
-          "Collection of Personal Information",
-          "Purpose of Use",
-          "Third-Party Disclosure",
-          "Advertising and Analytics",
-          "Changes to This Policy",
+          "Data processed",
+          "Optional sync and transfer",
+          "Support requests",
+          "Storage and deletion",
+          "External services and changes",
           "Contact",
         ]
       : [
-          "個人情報の収集について",
-          "データの利用目的",
-          "データの第三者提供",
-          "広告および解析ツールについて",
-          "プライバシーポリシーの変更",
-          "お問い合わせ窓口",
+          "取り扱うデータ",
+          "任意の同期・転送",
+          "お問い合わせ",
+          "保存と削除",
+          "外部サービスと変更",
+          "連絡先",
         ];
 
   return (
